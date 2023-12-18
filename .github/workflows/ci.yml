@@ -29,23 +29,6 @@ jobs:
 
       # Exécute un ensemble de commandes en utilisant le shell du runner
       - name: Exécuter un script multi-lignes
-
-# Ajout de reviewers à la pull request
-pull_request:
-  types:
-    - opened
-    - synchronize
-  branches:
-    - main
-  jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Request review from a specific user
-          uses: github/request-reviewer-action@v2
-          with:
-            reviewers: AxoulDeci
-            number: ${{ github.event.number }}
         run: |
           echo Ajoutez autres actions pour construire,
           echo tester et déployer votre projet.
