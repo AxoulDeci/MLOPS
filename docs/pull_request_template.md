@@ -6,3 +6,6 @@
 - [ ] Mon code respecte les normes de nommages
 - [ ] Aucune ligne de mon code ne dépasse 79 caractères
 - [ ] Chaque fonction contient un Docstring
+
+## Choisir le reviewer
+- [ ] J'ai définit le reviewer
