@@ -1,0 +1,34 @@
+name: CI  # Nom du workflow
+
+# Contrôle quand le workflow sera déclenché
+on:
+  # Déclenche le workflow lors d'événements de push ou pull request, mais uniquement pour la branche "main"
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Permet d'exécuter ce flux de travail manuellement depuis l'onglet Actions
+  workflow_dispatch:
+
+# Un flux de travail est composé d'un ou plusieurs jobs qui peuvent s'exécuter séquentiellement ou en parallèle
+jobs:
+  # Ce flux de travail contient un seul job appelé "build"
+  build:
+    # Le type de runner sur lequel le job s'exécutera
+    runs-on: ubuntu-latest
+
+    # Les étapes représentent une séquence de tâches qui seront exécutées dans le cadre du job
+    steps:
+      # Vérifie votre dépôt sous $GITHUB_WORKSPACE, afin que votre job puisse y accéder
+      - uses: actions/checkout@v3
+
+      # Exécute une seule commande en utilisant le shell du runner
+      - name: Exécuter un script d'une ligne
+        run: echo Bonjour, le monde !
+
+      # Exécute un ensemble de commandes en utilisant le shell du runner
+      - name: Exécuter un script multi-lignes
+        run: |
+          echo Ajoutez autres actions pour construire,
+          echo tester et déployer votre projet.
