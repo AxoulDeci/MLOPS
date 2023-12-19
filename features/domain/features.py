@@ -1,3 +1,4 @@
+import seaborn as sns
 
 ## 1. Données manquantes 
 
@@ -61,6 +62,9 @@ def detecter_donnees_aberrantes_par_boxplot(data):
     --------
     None
     """
+
+    import matplotlib.pyplot as plt
+    import seaborn as sns
     # Sélectionnez les colonnes numériques
     colonnes_numeriques = data.select_dtypes(include=['float64', 'int64'])
 
@@ -87,8 +91,10 @@ def regroupement(data):
     pandas.DataFrame:
         Le DataFrame avec les nouvelles catégories créées.
     """
+    import numpy as np
     # 3.1 Variable 'age'
     def recoder_age(data):
+        import numpy as np
         conditions = [
             (data['age'] <= 28),
             (data['age'] > 28) & (data['age'] <= 39),
@@ -106,6 +112,7 @@ def regroupement(data):
 
     # 3.2 Variable 'hours-per-week'
     def recoder_heures_semaine(data):
+        import numpy as np
         conditions_hours = [
             (data['hours-per-week'] <= 40),
             (data['hours-per-week'] > 40) & (data['hours-per-week'] <= 46),
@@ -122,9 +129,11 @@ def regroupement(data):
 
     # 3.3 Variable 'native-country'
     def recoder_native_country(data):
+        import numpy as np
         data['native-country'] = data['native-country'].str.strip()
 
         def group_countries(country):
+            import numpy as np
             if country == 'United-States':
                 return 'United_States'
             elif pd.notnull(country):
@@ -140,7 +149,9 @@ def regroupement(data):
 
     # 3.4 Variable 'workclass'
     def recoder_emploi_secteur(data):
+        import numpy as np
         def emploi_secteur(workclass):
+            import numpy as np
             if workclass in ('Federal-gov', 'Local-gov', 'State-gov'):
                 return 'Gouvernement'
             elif workclass in ('Never-worked', 'Without-pay'):
@@ -156,7 +167,9 @@ def regroupement(data):
 
     # 3.5 Variable 'marital-status'
     def recoder_marital_status(data):
+        import numpy as np
         def recoder_status(status):
+            import numpy as np
             if status in ('Married-AF-spouse', 'Married-civ-spouse', 'Married-spouse-absent'):
                 return 'Marie'
             elif status == 'Never-married':
@@ -172,6 +185,7 @@ def regroupement(data):
 
     # 3.6 Variable 'education'
     def recoder_education(data):
+        import numpy as np
         conditions_education = [
             data['education'].isin(['Preschool', '1st-4th', '5th-6th', '7th-8th', '9th']),
             data['education'].isin(['10th', '11th', '12th', 'HS-grad']),
@@ -188,6 +202,7 @@ def regroupement(data):
 
     # 3.7 Variable 'occupation'
     def recoder_occupation(data):
+        import numpy as np
         conditions = [
             data['occupation'].isin(['Adm-clerical', 'Exec-managerial', 'Prof-specialty', 'Tech-support']),
             data['occupation'].isin(['Armed-Forces', 'Protective-serv']),
@@ -207,6 +222,7 @@ def regroupement(data):
 
     # 3.8 Variable 'relationship'
     def recoder_relationship(data):
+        import numpy as np
         conditions_relationship = [
             (data['relationship'] == 'Husband') | (data['relationship'] == 'Wife')
         ]
@@ -220,7 +236,6 @@ def regroupement(data):
     recoder_relationship(data)
 
     return data
-
 
 # 4. Supprimer des colonnes ou on a fait des regroupements
 
