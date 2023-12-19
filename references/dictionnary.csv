@@ -1,0 +1,10 @@
+Nouveau nom;Regroupement
+Age;"""<=28 Ans"" / ""29-39 Ans"" / ""40-49 Ans"" et "" >=50 Ans"""
+Pays_natal;"""Etats_Unis"" et  ""Autre_pays"""
+Capital;Somme des gains et des pertes de capitaux
+Heures_par_sem;<=40H / 40-46H / >46H
+Education;Primaire_Second / Lycee, Sup / Sup_plus
+Emploi_Secteur;Gouvernement /  Sans_emploi / Prive
+Statut_marital;Marie / Seul / Divorce
+Relation_familiale;Conjoint / Autre_relation
+Occupation;Administration / Armee_defense / Artisan_Reparation / Autre_service / Ventes_Services / Transport / Autre
