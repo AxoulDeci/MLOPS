@@ -1,4 +1,5 @@
 import seaborn as sns
+import numpy as np
 
 ## 1. Données manquantes 
 
