@@ -13,6 +13,8 @@ from sklearn.metrics import RocCurveDisplay
 from sklearn.metrics import accuracy_score,f1_score,recall_score,precision_score,roc_auc_score
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.preprocessing import LabelEncoder
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 #Entrainement du modèle DecisionTreeClassifier
@@ -413,5 +415,105 @@ def model_score(model, data):
 
     auc_score = roc_auc_score(y_test_numeric, y_pred_numeric)
     print("AUC:", auc_score)
+
+    return None
+
+
+def matrice_confusion(model, data):
+    x = data.drop(['income'], axis=1)
+    y = data['income']
+    X_train, X_test, y_train, y_test = train_test_split(x, y, 
+                                                        random_state=0, 
+                                                        shuffle=True, 
+                                                        stratify=y)
+    
+    cat_columns = ['Age','Heures_semaine','Education','Marital_status','Relationship','gender','Occupation']
+    num_columns = ['capital']
+
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('cat', OneHotEncoder(), cat_columns),
+            ('num', 'passthrough', num_columns)
+        ],
+        remainder='drop'
+    )
+
+    X_train_encoded = preprocessor.fit_transform(X_train)
+    X_test_encoded = preprocessor.fit_transform(X_test)
+
+    y_pred_model = model.predict(X_test_encoded)
+
+    return print("Arbre", ConfusionMatrixDisplay.from_predictions(y_test,y_pred_model,
+                                                                  cmap=plt.cm.Blues,
+                                                                  display_labels=["<=50K",">50K"]))
+    
+
+def courbe_roc(model, data):
+    
+    x = data.drop(['income'], axis=1)
+    y = data['income']
+    X_train, X_test, y_train, y_test = train_test_split(x, y, 
+                                                        random_state=0, 
+                                                        shuffle=True, 
+                                                        stratify=y)
+    
+    cat_columns = ['Age','Heures_semaine','Education','Marital_status','Relationship','gender','Occupation']
+    num_columns = ['capital']
+
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('cat', OneHotEncoder(), cat_columns),
+            ('num', 'passthrough', num_columns)
+        ],
+        remainder='drop'
+    )
+
+    X_train_encoded = preprocessor.fit_transform(X_train)
+    X_test_encoded = preprocessor.fit_transform(X_test)
+
+    y_pred_model = model.predict(X_test_encoded)
+    
+    return RocCurveDisplay.from_estimator(model, X_test_encoded, y_test, name=model)
+
+
+def features_importances(forest, data):
+
+    x = data.drop(['income'], axis=1)
+    y = data['income']
+    X_train, X_test, y_train, y_test = train_test_split(x, y, 
+                                                        random_state=0, 
+                                                        shuffle=True, 
+                                                        stratify=y)
+    
+    cat_columns = ['Age','Heures_semaine','Education','Marital_status','Relationship','gender','Occupation']
+    num_columns = ['capital']
+
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('cat', OneHotEncoder(), cat_columns),
+            ('num', 'passthrough', num_columns)
+        ],
+        remainder='drop'
+    )
+
+    X_train_encoded = preprocessor.fit_transform(X_train)
+    X_test_encoded = preprocessor.fit_transform(X_test)
+
+    forest=RandomForestClassifier()
+    forest.fit(X_train_encoded, y_train)
+
+    feature_importances = forest.feature_importances_
+
+    feature_names = np.array(preprocessor.get_feature_names_out())
+
+    indices = np.argsort(feature_importances)[::-1]
+
+    plt.figure(figsize=(10, 6))
+    plt.barh(range(len(indices)), feature_importances[indices], align='center')
+    plt.yticks(range(len(indices)), feature_names[indices])
+    plt.xlabel("Feature Importance")
+    plt.ylabel("Feature")
+    plt.title("Random Forest Feature Importance")
+    plt.show()
 
     return None
