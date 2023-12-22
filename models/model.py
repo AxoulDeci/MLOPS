@@ -21,23 +21,13 @@ import numpy as np
 
 def fit_tree(data):
     """
-    Entraîne un classifieur d'arbre de décision en utilisant une recherche sur grille pour ajuster les hyperparamètres.
+    Entraine un classificateur d'arbre de décision sur les données fournies.
+
+    Parameters:
+    - data (DataFrame): Le DataFrame contenant les données d'entraînement.
 
     Returns:
-    Modèle Tree
-
-    Cette fonction utilise le classifieur d'arbre de décision de scikit-learn avec une recherche sur grille
-    pour ajuster les hyperparamètres tels que 'max_depth', 'min_samples_leaf' et 'min_samples_split'.
-    Les résultats du meilleur modèle sont stockés dans l'objet GridSearchCV.
-
-    Assurez-vous que les données d'entraînement et les étiquettes sont préalablement définies dans les variables
-    globales X_train_encoded et y_train.
-
-    Exemple :
-    fit_tree()
-
-    Note :
-    Cette fonction utilise scikit-learn, donc assurez-vous que le module est installé dans votre environnement.
+    - best_estimator (DecisionTreeClassifier): Le meilleur estimateur après la recherche sur grille.
     """
     x = data.drop(['income'], axis=1)
     y = data['income']
@@ -77,21 +67,13 @@ def fit_tree(data):
 
 def fit_forest(data):
     """
-    Entraîne un classifieur de forêt aléatoire (Random Forest) sur les données d'entraînement.
+    Entraine un classificateur de forêt aléatoire sur les données fournies.
+
+    Parameters:
+    - data (DataFrame): Le DataFrame contenant les données d'entraînement.
 
     Returns:
-    None
-
-    Cette fonction utilise le classifieur de forêt aléatoire de scikit-learn pour entraîner un modèle
-    sur les données d'entraînement préalablement encodées. Assurez-vous que les données d'entraînement et
-    les étiquettes sont définies dans les variables globales X_train_encoded et y_train.
-
-    Exemple :
-    fit_forest()
-
-    Note :
-    Cette fonction nécessite que le module scikit-learn soit installé dans votre environnement.
-    Assurez-vous d'avoir préalablement effectué l'encodage des données et défini les variables globales.
+    - forest (RandomForestClassifier): Le classificateur de forêt aléatoire entraîné.
     """
     x = data.drop(['income'], axis=1)
     y = data['income']
@@ -124,21 +106,13 @@ def fit_forest(data):
 
 def fit_ada(data):
     """
-    Entraîne un classifieur AdaBoost sur les données d'entraînement.
+    Entraine un classificateur AdaBoost sur les données fournies.
+
+    Parameters:
+    - data (DataFrame): Le DataFrame contenant les données d'entraînement.
 
     Returns:
-    None
-
-    Cette fonction utilise le classifieur AdaBoost de scikit-learn pour entraîner un modèle
-    sur les données d'entraînement préalablement encodées. Assurez-vous que les données d'entraînement et
-    les étiquettes sont définies dans les variables globales X_train_encoded et y_train.
-
-    Exemple :
-    fit_ada()
-
-    Note :
-    Cette fonction nécessite que le module scikit-learn soit installé dans votre environnement.
-    Assurez-vous d'avoir préalablement effectué l'encodage des données et défini les variables globales.
+    - ada (AdaBoostClassifier): Le classificateur AdaBoost entraîné.
     """
     x = data.drop(['income'], axis=1)
     y = data['income']
@@ -171,21 +145,13 @@ def fit_ada(data):
 
 def fit_knn(data):
     """
-    Entraîne un classifieur k-NN (k plus proches voisins) sur les données d'entraînement.
+    Entraîne un classificateur k-NN (k plus proches voisins) sur les données fournies.
+
+    Parameters:
+    - data (DataFrame): Le DataFrame contenant les données d'entraînement.
 
     Returns:
-    None
-
-    Cette fonction utilise le classifieur k-NN de scikit-learn pour entraîner un modèle
-    sur les données d'entraînement préalablement encodées. Assurez-vous que les données d'entraînement et
-    les étiquettes sont définies dans les variables globales X_train_encoded et y_train.
-
-    Exemple :
-    fit_knn()
-
-    Note :
-    Cette fonction nécessite que le module scikit-learn soit installé dans votre environnement.
-    Assurez-vous d'avoir préalablement effectué l'encodage des données et défini les variables globales.
+    - knn (KNeighborsClassifier): Le classificateur k-NN entraîné.
     """
     x = data.drop(['income'], axis=1)
     y = data['income']
@@ -218,21 +184,13 @@ def fit_knn(data):
 
 def fit_mlp(data):
     """
-    Entraîne un classifieur MLP (Perceptron multi-couches) sur les données d'entraînement.
+    Entraîne un classificateur MLP (Multi-Layer Perceptron) sur les données fournies.
+
+    Parameters:
+    - data (DataFrame): Le DataFrame contenant les données d'entraînement.
 
     Returns:
-    None
-
-    Cette fonction utilise le classifieur MLP de scikit-learn pour entraîner un modèle
-    sur les données d'entraînement préalablement encodées. Assurez-vous que les données d'entraînement et
-    les étiquettes sont définies dans les variables globales X_train_encoded et y_train.
-
-    Exemple :
-    fit_mlp()
-
-    Note :
-    Cette fonction nécessite que le module scikit-learn soit installé dans votre environnement.
-    Assurez-vous d'avoir préalablement effectué l'encodage des données et défini les variables globales.
+    - mlp (MLPClassifier): Le classificateur MLP entraîné.
     """
     x = data.drop(['income'], axis=1)
     y = data['income']
@@ -265,21 +223,13 @@ def fit_mlp(data):
 
 def fit_svc(data):
     """
-    Entraîne un classifieur SVM (Support Vector Machine) sur les données d'entraînement.
+    Entraîne un classificateur SVM (Support Vector Machine) sur les données fournies.
+
+    Parameters:
+    - data (DataFrame): Le DataFrame contenant les données d'entraînement.
 
     Returns:
-    None
-
-    Cette fonction utilise le classifieur SVM de scikit-learn pour entraîner un modèle
-    sur les données d'entraînement préalablement encodées. Assurez-vous que les données d'entraînement et
-    les étiquettes sont définies dans les variables globales X_train_encoded et y_train.
-
-    Exemple :
-    fit_svc()
-
-    Note :
-    Cette fonction nécessite que le module scikit-learn soit installé dans votre environnement.
-    Assurez-vous d'avoir préalablement effectué l'encodage des données et défini les variables globales.
+    - svc (SVC): Le classificateur SVM entraîné.
     """
     x = data.drop(['income'], axis=1)
     y = data['income']
@@ -312,21 +262,13 @@ def fit_svc(data):
 
 def fit_log(data):
     """
-    Entraîne un classifieur de régression logistique sur les données d'entraînement.
+    Entraîne un classificateur de régression logistique sur les données fournies.
+
+    Parameters:
+    - data (DataFrame): Le DataFrame contenant les données d'entraînement.
 
     Returns:
-    None
-
-    Cette fonction utilise le classifieur de régression logistique de scikit-learn pour entraîner un modèle
-    sur les données d'entraînement préalablement encodées. Assurez-vous que les données d'entraînement et
-    les étiquettes sont définies dans les variables globales X_train_encoded et y_train.
-
-    Exemple :
-    fit_log()
-
-    Note :
-    Cette fonction nécessite que le module scikit-learn soit installé dans votre environnement.
-    Assurez-vous d'avoir préalablement effectué l'encodage des données et défini les variables globales.
+    - log (LogisticRegression): Le classificateur de régression logistique entraîné.
     """
     x = data.drop(['income'], axis=1)
     y = data['income']
@@ -359,25 +301,14 @@ def fit_log(data):
 
 def model_score(model, data):
     """
-    Évalue les performances d'un modèle de classification.
+    Évalue les performances d'un modèle sur les ensembles d'apprentissage et de test.
 
     Parameters:
-    - model: Le modèle préalablement entraîné à évaluer.
+    - model: Le modèle entraîné à évaluer.
+    - data (DataFrame): Le DataFrame contenant les données.
 
     Returns:
     None
-
-    Cette fonction évalue les performances du modèle sur les ensembles d'apprentissage et de test.
-    Elle affiche l'accuracy, la précision, le rappel, le score F1, et l'aire sous la courbe ROC (AUC).
-
-    Assurez-vous que les données d'apprentissage et de test ainsi que les étiquettes sont définies dans
-    les variables globales X_train_encoded, y_train, X_test_encoded et y_test.
-
-    Exemple :
-    model_score(model)
-
-    Note :
-    Cette fonction nécessite que le module scikit-learn soit installé dans votre environnement.
     """
     x = data.drop(['income'], axis=1)
     y = data['income']
@@ -419,7 +350,19 @@ def model_score(model, data):
     return None
 
 
+#Matrice de confusion
+
 def matrice_confusion(model, data):
+    """
+    Affiche la matrice de confusion du modèle sur l'ensemble de test.
+
+    Parameters:
+    - model: Le modèle entraîné.
+    - data (DataFrame): Le DataFrame contenant les données.
+
+    Returns:
+    - cm_display: L'objet ConfusionMatrixDisplay prêt à être affiché.
+    """
     x = data.drop(['income'], axis=1)
     y = data['income']
     X_train, X_test, y_train, y_test = train_test_split(x, y, 
@@ -448,8 +391,19 @@ def matrice_confusion(model, data):
                                                                   display_labels=["<=50K",">50K"]))
     
 
+#Courbe de roc
+
 def courbe_roc(model, data):
-    
+    """
+    Affiche la courbe ROC du modèle sur l'ensemble de test.
+
+    Parameters:
+    - model: Le modèle entraîné.
+    - data (DataFrame): Le DataFrame contenant les données.
+
+    Returns:
+    - roc_display: L'objet RocCurveDisplay prêt à être affiché.
+    """
     x = data.drop(['income'], axis=1)
     y = data['income']
     X_train, X_test, y_train, y_test = train_test_split(x, y, 
@@ -476,8 +430,19 @@ def courbe_roc(model, data):
     return RocCurveDisplay.from_estimator(model, X_test_encoded, y_test, name=model)
 
 
-def features_importances(forest, data):
+#Features importances de RandomForest
 
+def features_importances(forest, data):
+    """
+    Affiche les importances des caractéristiques d'un modèle sur l'ensemble de test.
+
+    Parameters:
+    - model: Le modèle entraîné.
+    - data (DataFrame): Le DataFrame contenant les données.
+
+    Returns:
+    None
+    """
     x = data.drop(['income'], axis=1)
     y = data['income']
     X_train, X_test, y_train, y_test = train_test_split(x, y, 
